@@ -9,8 +9,16 @@ import { addTheFood, deleteTheFood } from "@/store/redux/actions";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
-import Alert from '@mui/material/Alert';
+import { Button } from "@mui/material";
+import { styled as muiStyled } from "@mui/material/styles";
+
+const CusBtn = muiStyled(Button)(({ theme }) => {
+  console.log(theme.palette.primary.main);
+  return {
+    background: theme.palette.primary.main,
+    color: "#fff",
+  };
+});
 
 const FoodListPage = styled.div`
   margin: 0;
@@ -56,25 +64,24 @@ const FoodListPage = styled.div`
 
 const DialogActionsStyle = styled.div`
   display: flex;
-  margin:10px ;
+  margin: 10px;
   justify-content: flex-end;
-  button{
-    margin:10px 3px;
+  button {
+    margin: 10px 3px;
     padding: 5px 10px;
     font-size: 12px;
   }
   .canel_btn {
     background: #ccc;
-    &:hover{
-      background:#e8e8e8 ;
+    &:hover {
+      background: #e8e8e8;
     }
   }
   .lunch_btn {
-    
-    background:#70be37;
-    color:#fff ;
-    &:hover{
-      background:#94cf69;
+    background: #70be37;
+    color: #fff;
+    &:hover {
+      background: #94cf69;
     }
   }
 `;
@@ -138,11 +145,12 @@ function FoodList() {
       }
     });
   };
-  const setData = foods.map((el, index) => {
+  const dataData = foods.map((el, index) => {
     return <tr key={index}>{setTd(el, index)}</tr>;
   });
   const handleAddBox = () => {
     setAddState(true);
+    setValue("");
   };
   const deleteFood = () => {
     dispatch(deleteTheFood(deleteIndex));
@@ -151,6 +159,7 @@ function FoodList() {
   const insertValue = () => {
     // setFoods([...foods, inputValue]);
     dispatch(addTheFood(inputValue));
+    setValue("");
     setAddState(false);
   };
 
@@ -168,11 +177,11 @@ function FoodList() {
       <div>
         <div className="top">
           <NavLink to="/">
-            <button className="btn_return">Return</button>
+            <Button variant="outlined">Return</Button>
           </NavLink>
-          <button className="btn_chagneState" onClick={handleAddBox}>
+          <CusBtn onClick={handleAddBox} variant="contained">
             Add food
-          </button>
+          </CusBtn>
         </div>
         <ShowAddBox
           addState={addState}
@@ -185,7 +194,7 @@ function FoodList() {
           <thead>
             <tr>{setTh}</tr>
           </thead>
-          <tbody>{setData}</tbody>
+          <tbody>{dataData}</tbody>
         </DefaultTable>
         <Dialog
           open={open}
@@ -198,12 +207,10 @@ function FoodList() {
             </DialogContentText>
           </DialogContent>
           <DialogActionsStyle>
-            <button className="canel_btn" onClick={handleClose}>
-              取消
-            </button>
-            <button className="lunch_btn" onClick={deleteFood}>
+            <Button onClick={handleClose}>取消</Button>
+            <Button variant="contained" color="error" onClick={deleteFood}>
               確定
-            </button>
+            </Button>
           </DialogActionsStyle>
         </Dialog>
       </div>

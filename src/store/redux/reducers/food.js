@@ -30,7 +30,6 @@ function FoodsReducer(state = initialState, action) {
       };
     }
     case "foods/deleteFood": {
-      console.log("ACtion",action.payload);
       return {
         ...state,
         foods: state.foods.filter((_, index) => {

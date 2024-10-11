@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "@/utils/fontawsome";
 import "./assets/CSS/App.css";
 import Home from "./views/Home.jsx";
@@ -17,14 +16,6 @@ function App() {
         </Route>
       </Routes>
     </div>
-    // <Routes>
-    //   <Route path="/about" element={<About />} />
-    //   <Route path="/" element={<Layout />}>
-    //     <Route index element={<Home />} />
-    //     <Route path="dashboard" element={<Dashboard />} />
-    //     <Route path="user" element={<User />} />
-    //   </Route>
-    // </Routes>
   );
 }
 

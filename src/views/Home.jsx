@@ -13,6 +13,7 @@ const HomePage = styled.div`
   background: #fff;
   border-radius: 10px;
   letter-spacing: 1px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 
   h1 {
     font-family: "Nunito", sans-serif;
@@ -94,7 +95,6 @@ const ResStyle = styled.div`
 `;
 
 function Home() {
-  // console.log("HOME");
   const image_list = [
     "./src/assets/images/food1.png",
     "./src/assets/images/food2.png",
@@ -135,7 +135,7 @@ function Home() {
     console.log(error);
   };
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+    // navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
     const setCircle = changeImage();
     return () => clearInterval(setCircle);
   }, []);

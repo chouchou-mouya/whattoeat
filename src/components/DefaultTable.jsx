@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import styled from "styled-components";
 
 const TableStyle = styled.table`
@@ -12,6 +12,7 @@ const TableStyle = styled.table`
   font-size: 14px;
   text-align: left;
   table-layout: fixed;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 
   thead {
     font-weight: bold;
